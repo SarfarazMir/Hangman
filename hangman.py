@@ -30,7 +30,6 @@ class Hangman:
                         # 4. REPLACE THE CORRESPONDING LETTER
                         placing[next_idx] = letter
                     except ValueError:
-                        placing[word.index(letter)] = letter
                         self.lives -= 1
                 else:
                     placing[word.index(letter)] = letter
