@@ -16,23 +16,21 @@ class Hangman:
     def __replace(self, word, placing, letter):
         
         # replace "_" with corresponding "letter"
+         # 1. GET THE INDEX OF THE LETTER IN THE WORD
+         # - IF THE LETTER IS ALREADY PRESENT IN PLACING SEARCH AFTER THAT LETTER AND REPLACE THE LETTER WITH CORRESPONDING UNDERSCORE, 
+         # OTHERWISE REPLACE THE LETTER WITH THE CORRESPONDING UNDERSCORE
+        if letter in placing:
+            try:
+                idx = word.index(letter)
+                next_idx = word.index(letter, idx+1)
+                # 4. REPLACE THE CORRESPONDING LETTER
+                placing[next_idx] = letter
+            except ValueError:
+                self.lives -= 1
+        else:
+            placing[word.index(letter)] = letter
 
-        # CHECK IF THE LETTER EXISTS IN WORD
-            # - IF THAT IS THE CASE DO FOLLOWING, OTHERWISE DO NOTHING
-        if letter in word:
-
-            # 1. GET THE INDEX OF THE LETTER IN THE WORD
-                # - IF THE LETTER IS ALREADY PRESENT IN PLACING SEARCH AFTER THAT LETTER
-                if letter in placing:
-                    try:
-                        idx = word.index(letter)
-                        next_idx = word.index(letter, idx+1)
-                        # 2. REPLACE THE CORRESPONDING LETTER
-                        placing[next_idx] = letter
-                    except ValueError:
-                        self.lives -= 1
-                else:
-                    placing[word.index(letter)] = letter
+           
 
     def start(self) -> None:
        
@@ -56,9 +54,11 @@ class Hangman:
                     print("\n")
 
                     # ask user input
-                    letter = input("Enter a letter: ")
+                    letter = input("Enter a letter: ").lower()
                         
-                    # get index of letter in the generated word
+                    
+                    # CHECK IF THE LETTER EXISTS IN WORD
+                    # - IF THAT IS THE CASE DO FOLLOWING, OTHERWISE LOSE LIFE
                     if letter in self.word and letter != "":
                         self.__replace(self.word, placing, letter[0])
                         
@@ -165,13 +165,16 @@ class Hangman:
 
 
 
-# open wordlist
+# 1. generate random word
 with open("./wordlist.txt") as file:
     words = file.readlines()
     # remove new line characters from wordlist
     new_wordlist = [i.strip("\n") for i in words]
     print(new_wordlist)
     
-    
+# word =  words[math.floor(random.randint(0, len(words)-1))]
+#print(word)
+
+
 hangman = Hangman(word_list=new_wordlist)
 hangman.start()
