@@ -162,9 +162,5 @@ with open("./wordlist.txt") as file:
     new_wordlist = [i.strip("\n") for i in words]
     print(new_wordlist)
     
-# word =  words[math.floor(random.randint(0, len(words)-1))]
-#print(word)
-
-
 hangman = Hangman(word_list=new_wordlist)
 hangman.start()
