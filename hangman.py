@@ -1,7 +1,6 @@
 import random
 from os import name, system
 
-
 class Hangman:
 
     def __init__(self, word_list) -> None:
@@ -30,11 +29,8 @@ class Hangman:
         else:
             placing[word.index(letter)] = letter
 
-           
-
     def start(self) -> None:
        
-        
         # display empty places for letters
         placing = [i for i in ("_"*len(self.word))]
         
@@ -55,7 +51,6 @@ class Hangman:
 
                     # ask user input
                     letter = input("Enter a letter: ").lower()
-                        
                     
                     # CHECK IF THE LETTER EXISTS IN WORD
                     # - IF THAT IS THE CASE DO FOLLOWING, OTHERWISE LOSE LIFE
@@ -72,14 +67,12 @@ class Hangman:
                 print(f"The word was {self.word}")
                 break
 
-               
     def __clear(self):
         if name == 'nt':
             system("cls")
         else:
             system("clear")
                 
-
     def __draw_hangman(self) -> None:
 
         if self.lives == 6:
@@ -161,9 +154,6 @@ class Hangman:
                         Y8b d88P                              
                          "Y88P"     
 """)
-
-
-
 
 # 1. generate random word
 with open("./wordlist.txt") as file:
