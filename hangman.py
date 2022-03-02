@@ -165,7 +165,7 @@ class Hangman:
 
 
 
-# 1. generate random word
+# open wordlist
 with open("./wordlist.txt") as file:
     words = file.readlines()
     # remove new line characters from wordlist
