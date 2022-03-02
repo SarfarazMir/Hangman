@@ -27,7 +27,7 @@ class Hangman:
                     try:
                         idx = word.index(letter)
                         next_idx = word.index(letter, idx+1)
-                        # 4. REPLACE THE CORRESPONDING LETTER
+                        # 2. REPLACE THE CORRESPONDING LETTER
                         placing[next_idx] = letter
                     except ValueError:
                         self.lives -= 1
