@@ -1,5 +1,3 @@
-#!/bin/env python3
-
 import random
 from os import name, system
 
